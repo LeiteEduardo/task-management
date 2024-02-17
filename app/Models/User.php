@@ -45,8 +45,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function isMaster(): bool
+    public function master()
     {
-        return $this->role === 'master';
+        return $this->belongsTo(User::class);
     }
 }

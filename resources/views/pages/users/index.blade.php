@@ -15,9 +15,42 @@
 	<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
     <li class="breadcrumb-item active">Users</li>
 @endsection
-{{-- Enviando para o layout o conteudo da pagina --}}
 @section('content')
+<div class="row mb-3">
+	<div class="col-lg-12">
+		<a class="btn btn-primary btn-sm" href="{{ route('users.create') }}"> <i class="fas fa-plus me-2"></i>Create</a>
+	</div>
+</div>
+<div class="row d-flex justify-content-center">
+	<div class="col-lg-12">
+	<div class="table-responsive">
 
+		<table class="table table-striped table-hover table-bordered table-sm align-middle">
+			<thead>
+				<tr>
+					<th scope="col" class="text-center">Name</th>
+					<th scope="col" class="text-center">E-mail</th>
+					<th scope="col" class="text-center">Master User</th>
+					<th scope="col" class="text-center">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach( $users as $user )
+					<tr>
+						<th scope="row" class="text-center">{{ $user->name }}</th>
+						<td class="text-center">{{ $user->email }}</td>
+						<td class="text-center">{{ $user->master->name ?? '' }}</td>
+						<td class="text-center">
+							<a class="btn btn-success btn-sm" href="{{ route('users.show', $user) }}"> <i class="fas fa-eye me-2"></i> Show</a>
+							<a class="btn btn-warning btn-sm" href="{{ route('users.edit', $user) }}"> <i class="fas fa-pen me-2"></i> Edit</a>
+						</td>
+					</tr>
+				@endforeach
+			</tbody>
+		</table>
+	</div>
+	</div>
+</div>
 
 @endsection
 @section('page-footer')

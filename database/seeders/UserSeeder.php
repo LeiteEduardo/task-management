@@ -14,17 +14,15 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $masterUser = User::factory()->create([
-            'name'      => 'Admin',
+            'name'      => 'Admin ' . fake()->name,
             'email'     => 'admin@email.com',
-            'password'  => '123456789',
+            'role'      => 'master',
+            'password'  => '123456789'
         ]);
 
-        User::factory()->create([
-            'name'      => 'Regular',
-            'email'     => 'regular@email.com',
-            'password'  => '123456789',
-            'role'      => 'regular',
+        User::factory()->count(3)->create([
             'master_id' => $masterUser->id,
+            'role' => 'regular',
         ]);
     }
 }

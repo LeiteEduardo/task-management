@@ -5,15 +5,23 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
+    public function __construct(protected UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.users.index');
+        $users = $this->userService->paginate(10);
+
+        return view('pages.users.index', compact('users'));
     }
 
     /**
@@ -21,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.users.create');
     }
 
     /**
@@ -29,7 +37,9 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        $this->userService->store($request->validated());
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -37,7 +47,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('pages.users.show', compact('user'));
     }
 
     /**
@@ -45,7 +55,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('pages.users.edit', compact('user'));
     }
 
     /**
@@ -53,7 +63,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $this->userService->update($request->validated(), $user);
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -61,6 +73,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $this->userService->delete($user->id);
+
+        return redirect('users');;
     }
 }
