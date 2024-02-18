@@ -22,11 +22,13 @@ class UserService
 
     public function store(array $storeUserRequest)
     {
+        $storeUserRequest['master_id'] = Auth::user()->id;
+
+        $user = $this->userRespository->store($storeUserRequest);
+        
         Session::flash('success', 'User created');
 
-        $storeUserRequest['master_id'] = Auth::user()->id;
-        
-        return $this->userRespository->store($storeUserRequest);
+        return $user;
     }
 
     public function update(array $updateUserRequest, User $user)
