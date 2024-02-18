@@ -56,7 +56,7 @@
                         <div class="col-lg-12 mt-2">
                             <label class="mb-1" for="responsible">Responsible</label>
                             <select class="form-select" name="responsible[]" id="responsible" multiple>
-                                @foreach ( Auth::user()->team as $user )
+                                @foreach ( Auth::user()->regulars as $user )
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
