@@ -29,7 +29,6 @@ class TaskController extends Controller
      */
     public function create()
     {
-        dd(Auth::user()->team);
         return view('pages.tasks.create');
     }
 

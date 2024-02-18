@@ -56,19 +56,6 @@ class User extends Authenticatable
         return $this->hasMany(User::class, 'master_id');
     }
 
-    public function team()
-    {
-        $currentUser = Auth::user();
-
-        // Obtém a coleção de usuários regulares existente
-        $regularsCollection = $currentUser->regulars;
-
-        // Adiciona o usuário autenticado à coleção existente
-        $regularsCollection->push($currentUser);
-
-        return $regularsCollection;
-    }
-
     public function tasks()
     {
         return $this->belongsToMany(Task::class);
