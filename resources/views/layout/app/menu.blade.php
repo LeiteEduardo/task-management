@@ -13,7 +13,7 @@
                         <i class="fa-solid fa-users me-2"></i>
                         Users
                     </a>
-                    <a class="nav-link" href="{{route('home')}}">
+                    <a class="nav-link" href="{{route('tasks.index')}}">
                         <i class="fa-solid fa-tasks me-2"></i>
                         Tasks
                     </a>

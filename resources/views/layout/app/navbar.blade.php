@@ -6,12 +6,6 @@
 
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
-        <li>
-            <a class="nav-link active" href="#">
-                
-                My Account
-            </a>
-        </li>
         <li><a class="nav-link active" href="{{ route('logout') }}">Logout</a></li>
     </ul>
 
