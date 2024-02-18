@@ -30,9 +30,9 @@ class BaseRepository
         return $this->obj->paginate($perPage);
     }
 
-    public function store(array $attributes): bool
+    public function store(array $attributes): object
     {
-        return $this->obj->insert($attributes);
+        return $this->obj->create($attributes);
     }
 
     public function update(int $id, array $attributes): bool

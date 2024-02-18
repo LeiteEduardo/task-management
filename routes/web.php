@@ -27,4 +27,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware('is_master')->group(function () {
         Route::resource('/users', App\Http\Controllers\UserController::class);
     });
+
+    Route::resource('/tasks', App\Http\Controllers\TaskController::class);
 });
